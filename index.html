@@ -27,7 +27,11 @@
                 const params = new URLSearchParams(window.location.search);
                 const name = params.get("name") || "Guest";
                 document.write(name); // Unsanitized reflection
-            </script>
+          	
+		if (name.includes("<script>alert('")) {
+                    alert("CTF{fl4g_3xpl0it_success}");
+                }
+	    </script>
         </span>
     </p>
 </body>
