@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XSS Challenge</title>
+</head>
+<body>
+    <h1>XSS CTF Challenge</h1>
+    <p>
+        Can you execute a script to trigger an alert box? Find the vulnerability and exploit it!
+    </p>
+
+    <!-- Simple form -->
+    <form action="" method="GET">
+        <label for="input">Enter your name:</label>
+        <input type="text" id="input" name="name" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- Reflect the user input -->
+    <h2>Welcome,</h2>
+    <p>
+        <!-- Dangerous! Displays raw user input -->
+        <span id="output">
+            <script>
+                // Reflect user input without sanitization
+                const params = new URLSearchParams(window.location.search);
+                const name = params.get("name") || "Guest";
+                document.write(name); // Unsanitized reflection
+            </script>
+        </span>
+    </p>
+</body>
+</html>
+
